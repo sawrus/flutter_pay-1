@@ -90,12 +90,19 @@ class FlutterPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
     }
 
     private fun getBaseRequest(): JSONObject {
-        val base_request: Any = JSONObject()
-                .put("apiVersion", 2)
-                .put("apiVersionMinor", 0)
-        if environment == WalletConstants.ENVIRONMENT_TEST
-            base_request.put("environment", "TEST")
-        return base_request
+        if (environment == WalletConstants.ENVIRONMENT_TEST)
+        {
+            return JSONObject()
+                    .put("apiVersion", 2)
+                    .put("apiVersionMinor", 0)
+                    .put("environment", "TEST")
+        }
+        else
+        {
+            return JSONObject()
+                    .put("apiVersion", 2)
+                    .put("apiVersionMinor", 0)
+        }
     }
 
     private fun getGatewayJsonTokenizationType(gatewayName: String, gatewayMerchantID: String): JSONObject {
